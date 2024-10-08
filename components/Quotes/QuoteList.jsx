@@ -4,25 +4,33 @@ import Quote from "./Quote";
 import styles from "@/styles/components/Quote/QuoteList.module.css";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 function QuoteList() {
   const [quotes, setQuotes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
   const session = useSession();
 
   async function getQuotes() {
+    setLoading(true);
     const res = await fetch("/api/quotes");
 
-    if (!res.ok) return;
+    if (!res.ok) {
+      setLoading(false);
+      return;
+    }
     const data = await res.json();
 
     console.log(data);
 
     setQuotes(data);
+    setLoading(false);
   }
 
   async function getMyQuotes() {
+    setLoading(true);
     const res = await fetch("/api/myquotes?id=" + session.data.user.user.id, {
       method: "GET",
       headers: {
@@ -30,12 +38,16 @@ function QuoteList() {
       },
     });
 
-    if (!res.ok) return;
+    if (!res.ok) {
+      setLoading(false);
+      return;
+    }
     const data = await res.json();
 
     console.log(data);
 
     setQuotes(data);
+    setLoading(false);
   }
 
   function reloadQuotes() {
@@ -57,6 +69,14 @@ function QuoteList() {
       }
     }
   }, [session.status]);
+
+  if (loading == true) {
+    return (
+      <div style={{ display: "grid", placeItems: "center" }}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.cont}>

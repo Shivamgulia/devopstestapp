@@ -2,14 +2,20 @@ import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
 import styles from "@/styles/components/Form/QuoteForm.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import { useRouter } from "next/router";
 
 function QuoteForm() {
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const session = useSession();
+  const router = useRouter();
 
   async function addQuote(event) {
     event.preventDefault();
+
+    setLoading(true);
 
     const author = event.target[0].value;
     const quote = event.target[1].value;
@@ -27,11 +33,15 @@ function QuoteForm() {
     });
 
     if (!res.ok) {
+      setLoading(false);
       setError(true);
       return;
     } else {
       setError(false);
+      setLoading(false);
     }
+    setLoading(false);
+    router.push("/myquote");
   }
 
   return (
@@ -57,10 +67,15 @@ function QuoteForm() {
           cols="50"
           className={`${styles.input}`}
         ></textarea>
-
-        <button type="submit" className={styles.button}>
-          Add Quote
-        </button>
+        {!loading ? (
+          <button type="submit" className={styles.button}>
+            Add Quote
+          </button>
+        ) : (
+          <div style={{ display: "grid", placeItems: "center" }}>
+            <LoadingSpinner />
+          </div>
+        )}
       </form>
     </div>
   );
