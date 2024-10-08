@@ -27,6 +27,9 @@ export default function Home() {
 
   return (
     <Layout>
+      <Head>
+        <title>Quotes</title>
+      </Head>
       <Main />
     </Layout>
   );

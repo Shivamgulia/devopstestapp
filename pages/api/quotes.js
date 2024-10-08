@@ -14,11 +14,16 @@ export default async function handler(req, res) {
   if (req.method == "POST") {
     // const body = await req.body.json();
 
-    const { author, quote, userid } = req.body;
+    let { author, quote, userid } = req.body;
 
-    console.log(author, quote);
+    console.log(userid, quote);
+
+    if (!author) {
+      author = "Aclenonymous";
+    }
+
     try {
-      if (!author || !quote) {
+      if (!userid || !quote) {
         return res.status(500).json({ message: "All Fields are Required" });
       }
 

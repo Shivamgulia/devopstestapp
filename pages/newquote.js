@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Layout from "@/components/Layout/Layout";
 import LoadingSpinner from "@/components/UI/LoadingSpinner";
 import QuoteForm from "@/components/Form/QuoteForm";
+import Head from "next/head";
 
 function newquote() {
   const session = useSession();
@@ -20,6 +21,9 @@ function newquote() {
   }
   return (
     <Layout>
+      <Head>
+        <title>New Quote</title>
+      </Head>
       <QuoteForm />
     </Layout>
   );

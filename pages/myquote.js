@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 import LoadingSpinner from "@/components/UI/LoadingSpinner";
+import Head from "next/head";
 
 function myquote() {
   const session = useSession();
@@ -22,6 +23,9 @@ function myquote() {
   }
   return (
     <Layout>
+      <Head>
+        <title>My Quotes</title>
+      </Head>
       <Main />
     </Layout>
   );
