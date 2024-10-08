@@ -1,0 +1,15 @@
+.cont {
+  display: grid;
+  width: 100vw;
+}
+
+.list {
+  display: grid;
+  place-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.listItem {
+  display: grid;
+}

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
+.cont {
+  display: grid;
+  width: 70vw;
+  background-color: #008080;
+  padding: 16px 32px;
+  border-radius: 1rem;
+  gap: 2rem;
+}
+
+.quote {
+  font-family: "Edu AU VIC WA NT Dots", cursive;
+  font-optical-sizing: auto;
+
+  font-style: normal;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  gap: 20%;
+}
+
+.delete {
+  background-color: rgb(171, 40, 40);
+  padding: 8px 16px;
+  border-radius: 5px;
+  border-style: none;
+  transition: all 0.3s;
+}
+
+.delete:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.author {
+  text-align: right;
+  color: #88dfdf;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+
+  font-style: normal;
+}
