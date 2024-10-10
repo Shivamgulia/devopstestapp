@@ -20,6 +20,7 @@ export default async function handler(req, res) {
 
     if (!author) {
       author = "Anonymous";
+      console.log("hello");
     }
 
     try {
